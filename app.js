@@ -2,7 +2,7 @@ const books = require("./data/books.json");
 const express = require("express");
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 app.get("/", (req, res) => {
   res.send("Welcome to the library");
@@ -50,7 +50,7 @@ app.get("/country/at-least/germany", (req, res) => {
 //10.Create a route /pages/all-greater/200 to fetch TRUE OR FALSE depending on if every books contain more then 200 pages
 app.get("/pages/all-greater/200", (req, res) => {
   let longBooks = books.filter((book) => book.pages > 200);
-  res.json(longBooks.length === books.length);
+  res.json(books.every(book => book.pages > 200));
 });
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
